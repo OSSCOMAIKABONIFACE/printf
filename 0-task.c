@@ -1,18 +1,18 @@
+
 #include "main.h"
 #include <stdarg.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 /**
- * _printint - prints an integer
- * @list: argument to print
- * Return: number of digits
+ *_printint - prints an integer
+ *@list: argument to print
+ *Return: number of digits
  */
 int _printint(va_list list)
 {
-	int num = va_arg(list, int), minus = 0, temp, i;
-	int digit_count = 0;
+        int num = va_arg(list, int), minus = 0, temp, i;
+        int digit_count = 0;
         int is_negative = 0;
         char *num_str;
 
@@ -29,11 +29,6 @@ int _printint(va_list list)
                 digit_count++;
         }
         num_str = (char *) malloc((digit_count + 1) * sizeof(char));
-        if (num_str == NULL)
-        {
-                fprintf(stderr, "Error: malloc failed in _printint\n");
-                exit(EXIT_FAILURE);
-        }
         num_str[digit_count] = '\0';
         for (i = digit_count - 1; i >= 0; i--)
         {
@@ -50,4 +45,3 @@ int _printint(va_list list)
                 return (write(STDOUT_FILENO, num_str, digit_count));
         }
 }
-

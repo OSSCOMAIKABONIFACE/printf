@@ -2,23 +2,20 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdarg.h>
-
 /**
- * _printcheck - checks and matches format with function
+ * _printcheck - checks and matchs format with function
  * @format: format from argument to check
- * @list: the list argument to print
- * Return: function type to be passed on to the print string function
+ * @list: the list agrument to print
+ * Return: funtion type to be passed on to the print string function
  */
 int _printcheck(const char format, va_list list)
 {
         unsigned int i;
         char c1;
-        int ret = -1;
 
         /**
          * functionStruct - collection of func and specifiers
-         * @specifier: format specifier
-         * @printFunction: function pointer to print function
+         * @functions: collection of functions
          */
         functionStruct functions[] = {
                 {'c', _printchar}, {'s', _printstring},
@@ -30,18 +27,13 @@ int _printcheck(const char format, va_list list)
         {
                 if (format == functions[i].specifier)
                 {
-                        ret = functions[i].printFunctions(list);
-                        break;
+                        return (functions[i].printFunctions(list));
+                }
+                else
+                {
+                        c1 = '%';
+                        return (write(STDOUT_FILENO, &c1, sizeof(c1)));
                 }
         }
-
-        if (ret == -1)
-        {
-                c1 = '%';
-                write(STDOUT_FILENO, &c1, 1);
-                write(STDOUT_FILENO, &format, 1);
-        }
-
-        return (ret);
+        return (-1);
 }
-

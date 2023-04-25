@@ -1,10 +1,9 @@
 #include "main.h"
 #include <stdarg.h>
 #include <unistd.h>
-
 /**
  * _strlen - check the length of the string
- * @ch: string to measure
+ * @ch: string to mearsure
  * Return: int
  */
 int _strlen(const char *ch)
@@ -17,7 +16,6 @@ int _strlen(const char *ch)
         }
         return (i);
 }
-
 /**
  * _printchar - prints char
  * @list: argument to print
@@ -29,7 +27,6 @@ int _printchar(va_list list)
 
         return (write(STDOUT_FILENO, &c, 1));
 }
-
 /**
  * _printstring - prints a string
  * @list: string to print
@@ -38,7 +35,6 @@ int _printchar(va_list list)
 int _printstring(va_list list)
 {
         char *str = va_arg(list, char *);
-        int len = _strlen(str);
 
         if (str == NULL)
         {
@@ -46,7 +42,7 @@ int _printstring(va_list list)
         }
         else
         {
-                return (write(STDOUT_FILENO, str, len));
+                return (write(STDOUT_FILENO, str, _strlen(str)));
         }
 }
 
